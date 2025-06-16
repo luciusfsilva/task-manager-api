@@ -6,4 +6,5 @@ public interface UsersService {
 
 	public User createUser(User user);
 	public User getUserById(String login);
+	public boolean login(String login, String password);
 }

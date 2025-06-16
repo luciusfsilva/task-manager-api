@@ -45,4 +45,10 @@ public class UsersServiceImpl implements UsersService {
 		return userExists; // Replace with actual implementation
 	}
 
+	@Override
+	public boolean login(String login, String password) {
+		
+		return false;
+	}
+
 }
