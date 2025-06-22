@@ -6,7 +6,7 @@ server:
 
 #Database configuration
 datasource:
-    url: jdbc:postgresql://localhost:5432/task_manager_db
+    url: jdbc:postgresql://localhost:5432/task_manager_db?useSSL=false&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: root_password
     driver-class-name: org.postgresql.Driver
@@ -28,4 +28,8 @@ logging:
 #Keys for JWT	
 jwt.private.key: classpath:app.key
 jwt.public.key: classpath:app.pub
+
+# Doc Api configuration
+springdoc.api-docs:
+  path: /v3/api-docs
 
