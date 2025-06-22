@@ -7,8 +7,6 @@ import com.manager.task_manager_api.model.User;
 
 public interface UsersRepository extends JpaRepository<User, Long> {
 
-	User existsById(String login);
-
 	User findByUsername(String username);
 	
 }

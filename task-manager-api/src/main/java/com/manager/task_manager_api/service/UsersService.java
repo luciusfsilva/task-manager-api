@@ -5,6 +5,7 @@ import com.manager.task_manager_api.model.User;
 public interface UsersService {
 
 	public User createUser(User user);
-	public User getUserById(String login);
+	public User getUserByUsername(String login);
 	public boolean login(String login, String password);
+	public String token(String login, String password);
 }

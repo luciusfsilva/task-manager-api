@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.manager.task_manager_api.model.User;
 import com.manager.task_manager_api.repository.UsersRepository;
+import com.manager.task_manager_api.security.UserCriptographPassword;
 import com.manager.task_manager_api.service.UsersService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,16 +29,18 @@ public class UsersServiceImpl implements UsersService {
 			throw new ResponseStatusException (HttpStatus.BAD_REQUEST, "User cannot be null or empty at " + System.currentTimeMillis());
 		}
 		log.info("Creating user: {}", user.getUsername());
+		String passwordCrypted = UserCriptographPassword.criptographPassword(user.getPassword());
+		user.setPassword(passwordCrypted);
 		return usersRepository.save(user);
 	}
 
 	@Override
-	public User getUserById(String login) {
+	public User getUserByUsername(String login) {
 		if (ObjectUtils.isEmpty(login)) {
 			log.error("Login cannot be null or empty");
 			throw new ResponseStatusException (HttpStatus.BAD_REQUEST, "Login cannot be null or empty at " + System.currentTimeMillis());
 		}
-		User userExists = usersRepository.existsById(login);
+		User userExists = usersRepository.findByUsername(login);
 		if (ObjectUtils.isEmpty(userExists)) {
 			log.error("User not found with login: {}", login);
 			throw new ResponseStatusException (HttpStatus.NOT_FOUND, "User not found with login: " + login + " at " + System.currentTimeMillis());
@@ -49,6 +52,17 @@ public class UsersServiceImpl implements UsersService {
 	public boolean login(String login, String password) {
 		
 		return false;
+	}
+
+	@Override
+	public String token(String login, String password) {
+		if (ObjectUtils.isEmpty(login) || ObjectUtils.isEmpty(password)) {
+			log.error("Login and password cannot be null or empty");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Login and password cannot be null or empty at " + System.currentTimeMillis());
+		}
+		
+		
+		return null;
 	}
 
 }
