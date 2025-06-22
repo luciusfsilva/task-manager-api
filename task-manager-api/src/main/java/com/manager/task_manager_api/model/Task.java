@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.manager.task_manager_api.enumTask.TaskStatusEnum;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
@@ -26,6 +27,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "tasks")
 public class Task {
 	
@@ -36,7 +38,7 @@ public class Task {
 	@Column(name = "title", nullable = false)
 	private String title;
 	
-	@Column(name = "title", nullable = false, length = 5000)
+	@Column(name = "description", nullable = false, length = 5000)
 	private String description;
 	
 	@Enumerated(EnumType.STRING)

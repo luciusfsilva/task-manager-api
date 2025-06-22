@@ -1,4 +1,4 @@
-package com.manager.task_manager_api.dto;
+package com.manager.task_manager_api.controller.dto;
 
 import com.manager.task_manager_api.model.User;
 

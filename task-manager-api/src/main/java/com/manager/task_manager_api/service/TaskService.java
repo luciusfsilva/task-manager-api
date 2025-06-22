@@ -2,7 +2,7 @@ package com.manager.task_manager_api.service;
 
 import java.util.List;
 
-import com.manager.task_manager_api.dto.TaskDTO;
+import com.manager.task_manager_api.controller.dto.TaskDTO;
 import com.manager.task_manager_api.model.Task;
 
 public interface TaskService {

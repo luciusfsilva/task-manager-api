@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import com.manager.task_manager_api.dto.TaskDTO;
+import com.manager.task_manager_api.controller.dto.TaskDTO;
 import com.manager.task_manager_api.exception.BadRequestException;
 import com.manager.task_manager_api.exception.ResourceNotFoundException;
 import com.manager.task_manager_api.model.Task;
