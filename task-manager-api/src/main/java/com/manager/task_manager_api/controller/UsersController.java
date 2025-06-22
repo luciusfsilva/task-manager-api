@@ -37,15 +37,4 @@ public class UsersController {
 		return ResponseEntity.ok(userExist);
 	}
 	
-	@PostMapping("/token")
-	public ResponseEntity<?> token(@RequestBody String login, @RequestBody String password) {
-		String token = usersService.token(login, password);
-		if (token == null) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-					.body("Invalid credentials for login: " + login);
-		}
-		return ResponseEntity.ok(token);
-	}
-	
-	
 }

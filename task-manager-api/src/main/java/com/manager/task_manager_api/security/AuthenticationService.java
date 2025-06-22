@@ -1,9 +1,7 @@
-package com.manager.task_manager_api.service.impl;
+package com.manager.task_manager_api.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
-import com.manager.task_manager_api.service.JWTService;
 
 @Service
 public class AuthenticationService {

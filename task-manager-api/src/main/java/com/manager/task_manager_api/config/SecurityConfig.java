@@ -1,4 +1,4 @@
-package com.manager.task_manager_api.security;
+package com.manager.task_manager_api.config;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -39,7 +39,7 @@ public class SecurityConfig {
 				csrf(AbstractHttpConfigurer::disable) // Disable CSRF for stateless APIs -> Necessario com manipulação de cookies
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/authenticate", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+						.requestMatchers("/api/auth/**", "/authenticate", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
 						.anyRequest().authenticated()) // Permite acesso a autenticação e documentação Swagger sem autenticação
 				.httpBasic(Customizer.withDefaults()) // Faz a tentativa da primeira autenticação com HTTP Basic
 				.oauth2ResourceServer(oauth2 -> oauth2
