@@ -27,6 +27,7 @@ public class UsersController {
 				.body(createdUser);
 	}
 	
+	/*
 	@PostMapping("/login")
 	public ResponseEntity<?> getUserById(@RequestBody String login, @RequestBody String password) {
 		boolean userExist = usersService.login(login, password);
@@ -35,6 +36,6 @@ public class UsersController {
 					.body("User not found with login: " + login);
 		}
 		return ResponseEntity.ok(userExist);
-	}
+	}*/
 	
 }

@@ -6,6 +6,4 @@ public interface UsersService {
 
 	public User createUser(User user);
 	public User getUserByUsername(String login);
-	public boolean login(String login, String password);
-	public String token(String login, String password);
 }

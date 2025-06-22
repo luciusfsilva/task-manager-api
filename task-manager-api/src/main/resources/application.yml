@@ -1,33 +1,33 @@
 spring:
   application:
     name: task-manager-api
-server:
-  port: 9191
 
 #Database configuration
-datasource:
-    url: jdbc:postgresql://localhost:5432/task_manager_db?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+  datasource:
+    url: jdbc:postgresql://localhost:5432/task_manager_db
     username: root
     password: root_password
     driver-class-name: org.postgresql.Driver
 
   # JPA configuration
-jpa:
+  jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        format_sql: true
-
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 # Logging configuration
 logging:
   level:
     root: INFO
 
-#Keys for JWT	
-jwt.private.key: classpath:app.key
-jwt.public.key: classpath:app.pub
+# Keys for JWT
+jwt:
+ private:
+  key: classpath:app.key
+ public:
+  key: classpath:app.pub
 
 # Doc Api configuration
 springdoc.api-docs:

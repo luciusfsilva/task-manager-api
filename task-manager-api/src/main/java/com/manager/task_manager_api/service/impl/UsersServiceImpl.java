@@ -1,10 +1,10 @@
 package com.manager.task_manager_api.service.impl;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.server.ResponseStatusException;
 
+import com.manager.task_manager_api.exception.BadRequestException;
+import com.manager.task_manager_api.exception.ResourceNotFoundException;
 import com.manager.task_manager_api.model.User;
 import com.manager.task_manager_api.repository.UsersRepository;
 import com.manager.task_manager_api.security.UserCriptographPassword;
@@ -26,7 +26,7 @@ public class UsersServiceImpl implements UsersService {
 	public User createUser(User user) {
 		if (ObjectUtils.isEmpty(user)) {
 			log.error("User cannot be null or empty");
-			throw new ResponseStatusException (HttpStatus.BAD_REQUEST, "User cannot be null or empty at " + System.currentTimeMillis());
+			throw new BadRequestException ("User cannot be null or empty at " + System.currentTimeMillis());
 		}
 		log.info("Creating user: {}", user.getUsername());
 		String passwordCrypted = UserCriptographPassword.criptographPassword(user.getPassword());
@@ -38,31 +38,31 @@ public class UsersServiceImpl implements UsersService {
 	public User getUserByUsername(String login) {
 		if (ObjectUtils.isEmpty(login)) {
 			log.error("Login cannot be null or empty");
-			throw new ResponseStatusException (HttpStatus.BAD_REQUEST, "Login cannot be null or empty at " + System.currentTimeMillis());
+			throw new BadRequestException ("Login cannot be null or empty at " + System.currentTimeMillis());
 		}
 		User userExists = usersRepository.findByUsername(login);
 		if (ObjectUtils.isEmpty(userExists)) {
 			log.error("User not found with login: {}", login);
-			throw new ResponseStatusException (HttpStatus.NOT_FOUND, "User not found with login: " + login + " at " + System.currentTimeMillis());
+			throw new ResourceNotFoundException ("User not found with login: " + login + " at " + System.currentTimeMillis());
 		}
 		return userExists; // Replace with actual implementation
 	}
 
-	@Override
-	public boolean login(String login, String password) {
-		
-		return false;
-	}
+//	@Override
+//	public boolean login(String login, String password) {
+//		
+//		return false;
+//	}
 
-	@Override
-	public String token(String login, String password) {
-		if (ObjectUtils.isEmpty(login) || ObjectUtils.isEmpty(password)) {
-			log.error("Login and password cannot be null or empty");
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Login and password cannot be null or empty at " + System.currentTimeMillis());
-		}
-		
-		
-		return null;
-	}
+//	@Override
+//	public String token(String login, String password) {
+//		if (ObjectUtils.isEmpty(login) || ObjectUtils.isEmpty(password)) {
+//			log.error("Login and password cannot be null or empty");
+//			throw new BadRequestException("Login and password cannot be null or empty at " + System.currentTimeMillis());
+//		}
+//		
+//		
+//		return null;
+//	}
 
 }
